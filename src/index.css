@@ -16,3 +16,7 @@
 .nav-btn_hover {
   @apply hover:bg-gray-200 md:hover:scale-110 md:hover:bg-white transition-transform  duration-300 ease-in-out;
 }
+
+#root {
+  padding: 1.5rem !important;
+}

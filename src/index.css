@@ -4,13 +4,15 @@
 @tailwind utilities;
 
 .nav-btn {
-  @apply lg:text-xl 
+  @apply lg:text-lg
   sm:p-3
   sm:text-base
   font-semibold 
   cursor-pointer 
   no-underline
-  font-heading 
-  transition-transform 
-  duration-300;
+  font-heading;
+}
+
+.nav-btn_hover {
+  @apply hover:bg-gray-200 md:hover:scale-110 md:hover:bg-white transition-transform  duration-300 ease-in-out;
 }

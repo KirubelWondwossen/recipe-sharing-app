@@ -1,9 +1,15 @@
 import HeroSection from "../components/HeroSection";
+import Navbar from "../components/Navbar";
 
 function LandingPage() {
   return (
     <>
-      <HeroSection />
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <HeroSection />
+      </main>
     </>
   );
 }

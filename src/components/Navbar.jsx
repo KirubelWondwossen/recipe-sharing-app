@@ -14,25 +14,35 @@ function Navbar() {
 
 function NavBtns() {
   return (
-    <ul className="flex md:justify-between md:gap-6 md:flex-row flex-col right-4 sm:right-0 top-0 gap-2 items-start absolute md:static">
-      <li>
+    <ul className="invisible md:visible flex md:justify-between md:gap-7 md:flex-row flex-col right-4 sm:right-0 top-0 gap-2 items-start absolute md:static">
+      <li className="nav-btn_hover">
         <a href="#" className="nav-btn">
           Home
         </a>
       </li>
-      <li>
+      <li className="nav-btn_hover">
         <a href="#" className="nav-btn">
           Recipe
         </a>
       </li>
-      <li>
+      <li className="nav-btn_hover">
         <a href="#" className="nav-btn">
           Community
         </a>
       </li>
-      <li>
+      <li className="nav-btn_hover">
         <a href="#" className="nav-btn">
           About Us
+        </a>
+      </li>
+      <li className="nav-btn_hover">
+        <a href="#" className="nav-btn md:hidden">
+          Search
+        </a>
+      </li>
+      <li className="nav-btn_hover">
+        <a href="#" className="nav-btn md:hidden">
+          Favorites
         </a>
       </li>
     </ul>

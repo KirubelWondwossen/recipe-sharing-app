@@ -4,5 +4,13 @@
 @tailwind utilities;
 
 .nav-btn {
-  @apply text-xl font-semibold cursor-pointer no-underline font-heading transition-transform duration-300 md:text-xl sm:text-lg p-3;
+  @apply lg:text-xl 
+  sm:p-3
+  sm:text-base
+  font-semibold 
+  cursor-pointer 
+  no-underline
+  font-heading 
+  transition-transform 
+  duration-300;
 }

@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-btn {
+  @apply text-xl font-semibold cursor-pointer no-underline font-heading transition-transform duration-300 md:text-xl sm:text-lg p-3;
+}

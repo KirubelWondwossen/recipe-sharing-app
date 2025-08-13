@@ -1,6 +1,20 @@
 import { StarIcon } from "@heroicons/react/16/solid";
-import Navbar from "./Navbar";
 import { HeartIcon } from "@heroicons/react/24/outline";
+
+const heroCards = [
+  {
+    img: "hero-p1.png",
+    name: "Sarah M.",
+    desc: `"The recipes here are not only delicious but also easy to follow”.`,
+    rating: 5,
+  },
+  {
+    img: "hero-p2.png",
+    name: "Farellin J.",
+    desc: `“I've discovered a treasure trove of meatless recipes that have made my meals”.`,
+    rating: 5,
+  },
+];
 
 function HeroSection() {
   return (
@@ -36,21 +50,56 @@ function HeroLeft() {
 function HeroRight() {
   return (
     <div className="container mx-auto p-4 relative">
-      <img className="" src="images\hero\hero-img.png" />
+      <img className="mb-7" src="images\hero\hero-img.png" />
       <img
         className="absolute right-0 top-[65%] w-20 h-20"
         src="images\hero\Broccoli.png"
       />
       <img
-        className="absolute top-[5%] w-12.5 h-12.5"
+        className="absolute top-[10%] w-12.5 h-12.5"
         src="images\hero\Tomato.png"
       />
       <img
         className="absolute top-[60%] -left-[15%] w-25 h-25"
         src="images\hero\Garlic.png"
       />
+      {heroCards.map((element, i) => (
+        <HeroCards data={element} i={i} />
+      ))}
+    </div>
+  );
+}
 
-      <HeroCards />
+function HeroCards({ data, i }) {
+  return (
+    <div
+      className={`flex flex-col w-52 rounded-xl shadow-lg p-3 gap-4 absolute bg-white ${
+        i === 1 ? "bottom-[20%] left-[45%] " : "bottom-[10%]"
+      }`}
+    >
+      <div className="bg-[#F1F3F7] p-3 rounded-xl">
+        <div className="flex gap-1 p-1">
+          {Array(data.rating)
+            .fill()
+            .map(() => (
+              <StarIcon className="w-4 h-4 text-accent" />
+            ))}
+        </div>
+        <p className="font-body text-left text-sm min-h-[5.5rem]">
+          {data.desc}
+        </p>
+      </div>
+      <div className="flex justify-between">
+        <span className="flex gap-2 items-center">
+          <img
+            src={`images/hero/${data.img}`}
+            alt="person"
+            className="w-7 h-7 rounded-full"
+          />
+          <p className="font-body text-base font-semibold ">{data.name}</p>
+        </span>
+        <HeartIcon className="w-6" />
+      </div>
     </div>
   );
 }

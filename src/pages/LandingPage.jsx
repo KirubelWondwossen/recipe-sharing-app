@@ -1,4 +1,5 @@
 import AboutUsSection from "../components/AboutUsSection";
+import CommunitySection from "../components/CommunitySection";
 import FeaturesSection from "../components/FeaturesSection";
 import HeroSection from "../components/HeroSection";
 import Navbar from "../components/Navbar";
@@ -15,6 +16,7 @@ function LandingPage() {
         <RecipeSection />
         <AboutUsSection />
         <FeaturesSection />
+        <CommunitySection />
       </main>
     </>
   );

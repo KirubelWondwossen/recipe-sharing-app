@@ -50,7 +50,7 @@ function CommunitySection() {
 
 function CommunityCards() {
   return (
-    <div className="grid grid-cols-2 gap-5 mt-10">
+    <div className="grid md:grid-cols-2 gap-5 mt-10">
       {comments.map((el, i) => (
         <CommunityCard data={el} key={i} />
       ))}
@@ -68,8 +68,10 @@ function CommunityCard({ data }) {
           alt="person"
         />
         <span className="flex flex-col">
-          <h3 className="text-xl font-heading font-semibold">{data.tittle}</h3>
-          <p className="text-left text-sm font-body text-[#7F7D7D]">
+          <h3 className="text-sm sm:text-lg md:text-xl font-heading font-semibold">
+            {data.tittle}
+          </h3>
+          <p className="text-left text-xs md:text-sm font-body text-[#7F7D7D]">
             {data.name}
           </p>
         </span>
@@ -81,7 +83,9 @@ function CommunityCard({ data }) {
             <StarIcon className="w-6 text-[#FFC567]" key={i} />
           ))}
       </div>
-      <p className="text-left text-sm font-body">{data.description}</p>
+      <p className="text-left text-xs leading-normal sm:text-sm font-body">
+        {data.description}
+      </p>
       <div className="overflow-hidden rounded-3xl">
         <img
           src={`images/community/img-${data.img}.png`}
@@ -90,13 +94,17 @@ function CommunityCard({ data }) {
         />
       </div>
       <div className="flex gap-5">
-        <span className="flex gap-2">
-          <HandThumbUpIcon className="w-6" />
-          <span className="text-base font-semibold font-body">{data.like}</span>
+        <span className="flex gap-2 items-center">
+          <HandThumbUpIcon className="w-4 md:w-6" />
+          <span className="text-xs sm:text-base font-semibold font-body">
+            {data.like}
+          </span>
         </span>
-        <span className="flex gap-2">
-          <ShareIcon className="w-6" />
-          <span className="text-base font-semibold font-body">Share</span>
+        <span className="flex gap-2 items-center">
+          <ShareIcon className="w-4 md:w-6" />
+          <span className="text-xs sm:text-base font-semibold font-body">
+            Share
+          </span>
         </span>
       </div>
     </div>

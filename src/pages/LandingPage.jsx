@@ -1,5 +1,6 @@
 import HeroSection from "../components/HeroSection";
 import Navbar from "../components/Navbar";
+import RecipeSection from "../components/RecipeSection";
 
 function LandingPage() {
   return (
@@ -9,6 +10,7 @@ function LandingPage() {
       </header>
       <main>
         <HeroSection />
+        <RecipeSection />
       </main>
     </>
   );

@@ -1,5 +1,6 @@
 import { StarIcon } from "@heroicons/react/16/solid";
 import { HeartIcon } from "@heroicons/react/24/outline";
+import Button from "./Button";
 
 const heroCards = [
   {
@@ -40,9 +41,7 @@ function HeroLeft() {
         hand with the best recipe. Help you to find the easiest way to cook.
       </p>
 
-      <button className="text-sm sm:text:base px-7 py-3.5 rounded-2xl bg-accent text-white font-body">
-        Explore recipes
-      </button>
+      <Button>Explore recipes</Button>
     </div>
   );
 }

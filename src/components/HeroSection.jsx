@@ -31,11 +31,11 @@ function HeroSection() {
 function HeroLeft() {
   return (
     <div className="container mx-auto p-4 flex flex-col items-center md:items-start">
-      <h1 className="font-bold font-heading text-3xl sm:text-4xl lg:text-5xl mb-4 text-center md:text-left sm:mt-20 leading-tight">
+      <h1 className="font-bold font-heading text-xl sm:text-4xl lg:text-5xl mb-4 text-center md:text-left sm:mt-20 leading-tight">
         Cooking Made Fun and Easy: Unleash Your Inner Chef
       </h1>
 
-      <p className="md:text-base text-sm mb-7 sm:mb-12 md:text-left w-10/12 text-gray-400">
+      <p className="text-xs md:text-base sm:text-sm mb-7 sm:mb-12 md:text-left w-10/12 text-gray-400">
         Discover more than
         <span className="text-accent font-body"> 10,000 recipes</span> in your
         hand with the best recipe. Help you to find the easiest way to cook.
@@ -63,7 +63,7 @@ function HeroRight() {
         src="images\hero\Garlic.png"
       />
       {heroCards.map((element, i) => (
-        <HeroCards data={element} i={i} />
+        <HeroCards data={element} i={i} key={i} />
       ))}
     </div>
   );
@@ -82,8 +82,8 @@ function HeroCards({ data, i }) {
         <div className="flex gap-1 p-1">
           {Array(data.rating)
             .fill()
-            .map(() => (
-              <StarIcon className="w-4 h-4 text-accent" />
+            .map((_, i) => (
+              <StarIcon className="w-4 h-4 text-accent" key={i} />
             ))}
         </div>
         <p className="font-body text-left text-xs lg:text-sm min-h-[4rem] lg:min-h-[5.5rem]">

@@ -3,14 +3,14 @@ import CommunitySection from "../components/CommunitySection";
 import FeaturesSection from "../components/FeaturesSection";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
-import Navbar from "../components/Navbar";
+import LandingNavbar from "../components/LandingNavbar";
 import RecipeSection from "../components/RecipeSection";
 
 function LandingPage() {
   return (
     <>
       <header>
-        <Navbar />
+        <LandingNavbar />
       </header>
       <main>
         <HeroSection />

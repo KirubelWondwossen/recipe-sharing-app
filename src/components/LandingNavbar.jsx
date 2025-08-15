@@ -3,7 +3,7 @@ import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { BookmarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function LandingNavbar() {
   return (
     <nav className="container px-4 mx-auto flex justify-between items-center relative">
       <Logo />
@@ -63,4 +63,4 @@ function NavIcons() {
   );
 }
 
-export default Navbar;
+export default LandingNavbar;

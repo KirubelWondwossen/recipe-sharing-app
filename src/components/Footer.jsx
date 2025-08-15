@@ -52,8 +52,10 @@ function ItemsCol({ items }) {
       <h4 className="md:text-xl text-base font-heading font-semibold mb-1">
         {items.title}
       </h4>
-      {items.links.map((el) => (
-        <a className="text-xs md:text-sm font-body font-medium">{el}</a>
+      {items.links.map((el, i) => (
+        <a className="text-xs md:text-sm font-body font-medium" key={i}>
+          {el}
+        </a>
       ))}
     </div>
   );

@@ -1,6 +1,7 @@
 import Logo from "./Logo";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { BookmarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -53,7 +54,10 @@ function NavIcons() {
   return (
     <div className="flex gap-4 items-center px-4">
       <Bars3Icon className="h-5 w-5 md:hidden" />
-      <MagnifyingGlassIcon className="h-5 w-5 cursor-pointer hidden md:block" />
+      <Link to="/home">
+        <MagnifyingGlassIcon className="h-5 w-5 cursor-pointer hidden md:block" />
+      </Link>
+
       <BookmarkIcon className="h-5 w-5 cursor-pointer hidden md:block" />
     </div>
   );

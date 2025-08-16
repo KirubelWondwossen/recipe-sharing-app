@@ -17,6 +17,10 @@
   @apply hover:bg-gray-200 md:hover:scale-110 md:hover:bg-white transition-transform  duration-300 ease-in-out;
 }
 
+.navbar-btn {
+  @apply text-sm p-2 lg:text-lg lg:p-3  font-semibold cursor-pointer no-underline font-heading;
+}
+
 #root {
   padding: 1.5rem !important;
 }

@@ -7,32 +7,36 @@ import Logo from "./Logo";
 
 function Navbar() {
   return (
-    <nav className="container px-4 mx-auto flex justify-between items-center">
-      <div className="flex items-center">
-        <Bars3Icon className="h-5 w-5" />
-        <Logo />
-      </div>
-      <Search />
-      <NavBtns />
-    </nav>
+    <div className="flex flex-col items-center">
+      <nav className="container mx-auto flex justify-between items-center relative">
+        <div className="flex justify-start md:items-center">
+          <Bars3Icon className="h-5 w-5 hidden md:block" />
+          <Logo style={"px-0"} />
+        </div>
+        <Search style={"absolute invisible md:visible md:static"} />
+        <Bars3Icon className="h-5 w-5 md:hidden" />
+        <NavBtns />
+      </nav>
+      <Search style={"mt-4 md:hidden"} />
+    </div>
   );
 }
 
 function NavBtns() {
   return (
-    <ul className="flex justify-between">
+    <ul className="flex justify-between flex-col items-start md:flex-row  right-4 sm:right-[5%] top-0 gap-2 absolute md:static md:visible invisible">
       <li className="list-none">
-        <a href="#" className="nav-btn text-logo">
+        <a href="#" className="navbar-btn text-logo">
           Home
         </a>
       </li>
       <li className="list-none">
-        <a href="#" className="nav-btn">
+        <a href="#" className="navbar-btn">
           Favorites
         </a>
       </li>
       <li className="list-none">
-        <a href="#" className="nav-btn">
+        <a href="#" className="navbar-btn">
           About
         </a>
       </li>
@@ -40,20 +44,22 @@ function NavBtns() {
   );
 }
 
-function Search() {
+function Search({ style }) {
   return (
-    <div className="w-fit bg-[#F3F3F3] flex items-center gap-2">
-      <span className="flex gap-1 items-center cursor-pointer">
-        <span className="text-sm font-body px-2">All Categories</span>
-        <ChevronDownIcon className="w-4" />
+    <div className={`w-fit bg-[#F3F3F3] flex items-center gap-2 ${style}`}>
+      <span className="flex sm:gap-1 items-center cursor-pointer">
+        <span className="text-[10px] sm:text-xs lg:text-sm font-body px-1 sm:px-2">
+          All Categories
+        </span>
+        <ChevronDownIcon className="w-2 sm:w-3 lg:w-4" />
       </span>
-      <span className="text-[#ADADAD] pb-1">|</span>
+      <span className="text-[#ADADAD] pb-1 text-xs sm:text-base">|</span>
       <input
-        className="p-2 outline-none focus:outline-none text-body text-sm bg-[#F3F3F3]"
+        className="py-1 sm:p-2 outline-none focus:outline-none text-body text-xs lg:text-sm bg-[#F3F3F3]"
         type="search"
         placeholder="Search for recipes..."
       />
-      <span className="p-3 bg-[#509E2F] cursor-pointer">
+      <span className="lg:p-3 p-1 sm:p-2 bg-[#509E2F] cursor-pointer">
         <MagnifyingGlassIcon className="w-4 text-white" />
       </span>
     </div>

@@ -1,6 +1,8 @@
 import MealCard from "../components/MealCard";
 import Navbar from "../components/Navbar";
 import Trending from "../components/Trending";
+import Footer from "../components/Footer";
+import Button from "../components/Button";
 
 const meals = [
   "Creamy Salad",
@@ -19,6 +21,10 @@ function Home() {
       <Navbar />
       <Trending />
       <MealCards />
+      <div className="flex flex-col items-center">
+        <Button style={"mt-8"}>Load More</Button>
+      </div>
+      <Footer />
     </div>
   );
 }

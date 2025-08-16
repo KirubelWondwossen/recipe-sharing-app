@@ -1,4 +1,5 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 function MealCard({ meal, i }) {
   return (
@@ -15,9 +16,11 @@ function MealCard({ meal, i }) {
           {meal}
         </h3>
         <div className="flex justify-between w-full items-center">
-          <a href="#" className="text-body text-base text-accent underline">
-            View recipe
-          </a>
+          <Link to="/recipedetailpage">
+            <a href="#" className="text-body text-base text-accent underline">
+              View recipe
+            </a>
+          </Link>
           <HeartIcon className="w-5" />
         </div>
       </div>

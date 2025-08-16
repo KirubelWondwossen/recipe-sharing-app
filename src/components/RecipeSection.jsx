@@ -1,4 +1,5 @@
 import Button from "./Button";
+import CardTitle from "./CardTitle";
 import SectionHeader from "./SectionHeader";
 const meals = [
   "Creamy Salad",
@@ -53,9 +54,7 @@ function MealCard({ meal, i }) {
         />
       </div>
       <div className="px-4 pb-5 text-left">
-        <h3 className="sm:text-xl md:text-2xl font-heading font-semibold">
-          {meal}
-        </h3>
+        <CardTitle>{meal}</CardTitle>
         <a href="#" className="text-body text-base text-accent underline">
           View recipe
         </a>

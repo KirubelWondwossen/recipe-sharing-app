@@ -53,7 +53,7 @@ function Search() {
         type="search"
         placeholder="Search for recipes..."
       />
-      <span className="p-2 bg-[#509E2F] cursor-pointer">
+      <span className="p-3 bg-[#509E2F] cursor-pointer">
         <MagnifyingGlassIcon className="w-4 text-white" />
       </span>
     </div>

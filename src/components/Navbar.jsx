@@ -4,8 +4,10 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar({ hidden }) {
+  const location = useLocation();
   return (
     <div className="flex flex-col items-center">
       <nav className="container mx-auto flex justify-between items-center relative">
@@ -26,19 +28,32 @@ function NavBtns() {
   return (
     <ul className="flex justify-between flex-col items-start md:flex-row  right-4 sm:right-[5%] top-0 gap-2 absolute md:static md:visible invisible">
       <li className="list-none">
-        <a href="#" className="navbar-btn text-logo">
+        <Link
+          to="/home"
+          className={`${
+            location.pathname === "/home" && "text-logo"
+          } navbar-btn`}
+        >
           Home
-        </a>
+        </Link>
       </li>
       <li className="list-none">
-        <a href="#" className="navbar-btn">
+        <Link
+          to="/favoritespage"
+          className={`${
+            location.pathname === "/favoritespage" && "text-logo"
+          } navbar-btn`}
+        >
           Favorites
-        </a>
+        </Link>
       </li>
       <li className="list-none">
-        <a href="#" className="navbar-btn">
+        <Link
+          to="/"
+          className={`${location.pathname === "/" && "text-logo"} navbar-btn`}
+        >
           About
-        </a>
+        </Link>
       </li>
     </ul>
   );

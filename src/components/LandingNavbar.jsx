@@ -2,6 +2,7 @@ import Logo from "./Logo";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { BookmarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 function LandingNavbar() {
   return (
@@ -17,24 +18,34 @@ function NavBtns() {
   return (
     <ul className="invisible md:visible flex md:justify-between md:gap-7 md:flex-row flex-col right-4 sm:right-0 top-0 gap-2 items-start absolute md:static">
       <li className="nav-btn_hover">
-        <a href="#" className="nav-btn">
+        <ScrollLink to="hero" smooth={true} duration={500} className="nav-btn">
           Home
-        </a>
+        </ScrollLink>
       </li>
       <li className="nav-btn_hover">
-        <a href="#" className="nav-btn">
+        <ScrollLink
+          to="recipe"
+          smooth={true}
+          duration={500}
+          className="nav-btn"
+        >
           Recipe
-        </a>
+        </ScrollLink>
       </li>
       <li className="nav-btn_hover">
-        <a href="#" className="nav-btn">
+        <ScrollLink
+          to="community"
+          smooth={true}
+          duration={500}
+          className="nav-btn"
+        >
           Community
-        </a>
+        </ScrollLink>
       </li>
       <li className="nav-btn_hover">
-        <a href="#" className="nav-btn">
+        <ScrollLink to="about" smooth={true} duration={500} className="nav-btn">
           About Us
-        </a>
+        </ScrollLink>
       </li>
       <li className="nav-btn_hover">
         <a href="#" className="nav-btn md:hidden">
@@ -42,9 +53,9 @@ function NavBtns() {
         </a>
       </li>
       <li className="nav-btn_hover">
-        <a href="#" className="nav-btn md:hidden">
+        <Link to="/favoritespage" className="nav-btn md:hidden">
           Favorites
-        </a>
+        </Link>
       </li>
     </ul>
   );
@@ -57,8 +68,9 @@ function NavIcons() {
       <Link to="/home">
         <MagnifyingGlassIcon className="h-5 w-5 cursor-pointer hidden md:block" />
       </Link>
-
-      <BookmarkIcon className="h-5 w-5 cursor-pointer hidden md:block" />
+      <Link to="/favoritespage">
+        <BookmarkIcon className="h-5 w-5 cursor-pointer hidden md:block" />
+      </Link>
     </div>
   );
 }

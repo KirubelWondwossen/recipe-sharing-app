@@ -3,7 +3,10 @@ import SectionHeader from "./SectionHeader";
 
 function AboutUsSection() {
   return (
-    <section className="md:h-[30rem] md:bg-[url('/images/about/bg.png')] bg-contain bg-no-repeat bg-center">
+    <section
+      id="about"
+      className="md:h-[30rem] md:bg-[url('/images/about/bg.png')] bg-contain bg-no-repeat bg-center"
+    >
       <div className="container mx-auto p-4 my-12 flex flex-col lg:flex-row gap-5 items-center h-full">
         <div className="md:block w-fit p-4 bg-white rounded-lg md:mx-14 lg:mt-56">
           <p className="text-body text-base lg:text-xl text-center sm:text-left text-logo">

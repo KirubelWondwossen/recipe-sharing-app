@@ -39,7 +39,7 @@ const comments = [
 
 function CommunitySection() {
   return (
-    <section>
+    <section id="community">
       <div className="container mx-auto p-4 my-12">
         <SectionHeader>From Our Community</SectionHeader>
         <CommunityCards />

@@ -19,7 +19,7 @@ const heroCards = [
 
 function HeroSection() {
   return (
-    <section>
+    <section id="hero">
       <div className="container mx-auto p-4 flex flex-col justify-between md:flex-row">
         <HeroLeft />
         <HeroRight />

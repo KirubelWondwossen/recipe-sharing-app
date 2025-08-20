@@ -7,6 +7,7 @@ import Logo from "./Logo";
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar({ hidden }) {
+  // eslint-disable-next-line
   const location = useLocation();
   return (
     <div className="flex flex-col items-center">

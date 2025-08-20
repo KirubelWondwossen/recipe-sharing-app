@@ -1,6 +1,8 @@
 import Button from "./Button";
 import CardTitle from "./CardTitle";
 import SectionHeader from "./SectionHeader";
+import { Link } from "react-router-dom";
+
 const meals = [
   "Creamy Salad",
   "Tofu Tomatoes Soup",
@@ -12,7 +14,7 @@ const meals = [
 
 function RecipeSection() {
   return (
-    <section>
+    <section id="recipe">
       <div className="container mx-auto p-4 my-12">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="flex flex-col gap-2">
@@ -23,9 +25,11 @@ function RecipeSection() {
               Check our most popular recipes of this week
             </p>
           </div>
-          <Button style={"invisible absolute md:visible md:static"}>
-            See More
-          </Button>
+          <Link to={"/home"}>
+            <Button style={"invisible absolute md:visible md:static"}>
+              See More
+            </Button>
+          </Link>
         </div>
         <MealCards />
       </div>

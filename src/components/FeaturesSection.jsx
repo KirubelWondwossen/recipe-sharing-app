@@ -52,7 +52,7 @@ const features = [
 
 function FeaturesSection() {
   return (
-    <section>
+    <section id="features">
       <div className="container mx-auto p-4 my-12">
         <SectionHeader>Why You’ll Love This App</SectionHeader>
         <FeaturesCards />

@@ -5,12 +5,12 @@ import {
 } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
 
-function Navbar() {
+function Navbar({ hidden }) {
   return (
     <div className="flex flex-col items-center">
       <nav className="container mx-auto flex justify-between items-center relative">
         <div className="flex justify-start md:items-center">
-          <Bars3Icon className="h-5 w-5 hidden md:block" />
+          <Bars3Icon className={`h-5 w-5 hidden md:block ${hidden}`} />
           <Logo style={"px-0"} />
         </div>
         <Search style={"absolute invisible md:visible md:static"} />

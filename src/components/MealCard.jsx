@@ -16,11 +16,13 @@ function MealCard({ meal, i }) {
           {meal}
         </h3>
         <div className="flex justify-between w-full items-center">
-          <Link to="/recipedetailpage">
-            <a href="#" className="text-body text-base text-accent underline">
-              View recipe
-            </a>
+          <Link
+            to="/recipedetailpage"
+            className="text-body text-base text-accent underline"
+          >
+            View recipe
           </Link>
+
           <HeartIcon className="w-5" />
         </div>
       </div>

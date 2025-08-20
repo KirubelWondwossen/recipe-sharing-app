@@ -19,7 +19,7 @@ function Home() {
   return (
     <div className="container mx-auto relative">
       <Navbar />
-      <Trending />
+      <Trending height={"h-[15rem]"} />
       <MealCards />
       <div className="flex flex-col items-center">
         <Button style={"mt-8"}>Load More</Button>

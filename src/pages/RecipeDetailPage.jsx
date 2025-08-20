@@ -54,13 +54,16 @@ const data = [
 function RecipeDetailPage() {
   return (
     <div className="container mx-auto">
-      <Navbar />
-      <Trending visible={"hidden"} />
-      <div className="flex gap-11">
+      <Navbar hidden={"md:hidden"} />
+      <Trending
+        visible={"hidden"}
+        height={"h-[8rem] sm:h-[10rem] md:h-[15rem]"}
+      />
+      <div className="flex gap-5 sm:gap-11">
         {data.map((el, i) => (
           <Tags data={el} key={i} />
         ))}
-        <HeartIcon className="w-8" />
+        <HeartIcon className="w-5 sm:w-7 md:w-8" />
       </div>
       <Ingredients ingredients={ingredients} />
       <Instructions instructions={instructions} />
@@ -71,11 +74,15 @@ function RecipeDetailPage() {
 
 function Tags({ data }) {
   return (
-    <div className="flex gap-4 items-center my-8">
-      <data.Icon className="w-8" />
+    <div className="flex gap-4 items-center my-5 sm:my-8">
+      <data.Icon className="w-5 sm:w-7 md:w-8" />
       <span className="flex flex-col items-start">
-        <p className="text-base text-[#ADADAD] font-body">{data.type}</p>
-        <h4 className="text-2xl font-heading font-semibold">{data.desc}</h4>
+        <p className="text-xs md:text-base text-[#ADADAD] font-body">
+          {data.type}
+        </p>
+        <h4 className="sm:text-xl md:text-2xl font-heading font-semibold">
+          {data.desc}
+        </h4>
       </span>
     </div>
   );
@@ -83,11 +90,14 @@ function Tags({ data }) {
 
 function Ingredients({ ingredients }) {
   return (
-    <div className="rounded-xl shadow-lg flex flex-col items-start my-8 p-4">
+    <div className="rounded-xl shadow-lg flex flex-col items-start sm:my-8 p-4">
       <CardTitle>Ingredients</CardTitle>
-      <ul className="grid grid-cols-2 gap-x-8 gap-y-2 my-2">
+      <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 my-2">
         {ingredients.map((el, i) => (
-          <li className="text-lg font-body font-medium text-left" key={i}>
+          <li
+            className="text-xs sm:text-base md:text-lg font-body font-medium text-left"
+            key={i}
+          >
             {el}
           </li>
         ))}
@@ -117,10 +127,12 @@ function Instructions() {
 function Steps({ step, i }) {
   return (
     <div className="flex items-center gap-2 p-4 rounded-xl bg-[#EEEEEE] w-full">
-      <span className="text-2xl text-accent font-body font-semibold">
+      <span className="sm:text-lg md:text-2xl text-accent font-body font-semibold">
         {i + 1 > 9 ? i + 1 : "0" + (i + 1)}
       </span>
-      <p className="text-lg font-body font-medium">{step}</p>
+      <p className="text-xs sm:text-sm md:text-lg font-body font-medium text-left">
+        {step}
+      </p>
     </div>
   );
 }

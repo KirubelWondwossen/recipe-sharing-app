@@ -3,29 +3,25 @@ import Navbar from "../components/Navbar";
 import Trending from "../components/Trending";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
-import { search } from "../services/mealdbService";
-import { useState } from "react";
+import { random, search } from "../services/mealdbService";
+import { useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader";
-
-// const meals = [
-//   "Creamy Salad",
-//   "Tofu Tomatoes Soup",
-//   "Crunchy Potatoes",
-//   "Mushroom Soup",
-//   "Raspberry Pancake",
-//   "Beef Teriyaki",
-//   "Raspberry Pancake",
-//   "Beef Teriyaki",
-// ];
 
 function Home() {
   const [meals, setMeals] = useState([]);
   const [displayCount, setDisplayCount] = useState(8);
   const visibleMeals = meals.slice(0, displayCount);
+  const [trendingImg, setTrendingImg] = useState([]);
 
-  function handleLoadMore() {
-    setDisplayCount((prev) => prev + 8);
-  }
+  useEffect(() => {
+    async function fetchRandomMeal() {
+      const data = await random(); // returns an array
+      if (data.length > 0) setTrendingImg(data[0]); // get first meal
+    }
+    fetchRandomMeal();
+  }, []);
+
+  console.log(trendingImg);
 
   async function handleSearch(meal) {
     if (!meal) return [];
@@ -33,10 +29,17 @@ function Home() {
     setMeals(result);
     console.log(meals);
   }
+
+  function handleLoadMore() {
+    setDisplayCount((prev) => prev + 8);
+  }
+
   return (
     <div className="container mx-auto relative">
       <Navbar handleSearch={handleSearch} />
-      <Trending height={"h-[15rem]"} meal={meals} />
+
+      {trendingImg && <Trending height={"h-[15rem]"} meal={trendingImg} />}
+
       <MealCards visibleMeals={visibleMeals} />
       <div className="flex flex-col items-center">
         {displayCount < meals.length && (

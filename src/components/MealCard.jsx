@@ -8,7 +8,7 @@ function MealCard({ meal }) {
         <img
           className="rounded-t-xl transition-transform hover:scale-110 duration-300 w-full"
           src={`${meal.strMealThumb}`}
-          alt={meal}
+          alt={meal.strMeal}
         />
       </div>
       <div className="px-4 pb-5 text-left">

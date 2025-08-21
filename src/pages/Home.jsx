@@ -21,13 +21,10 @@ function Home() {
     fetchRandomMeal();
   }, []);
 
-  console.log(trendingImg);
-
   async function handleSearch(meal) {
     if (!meal) return [];
     const result = await search(meal);
     setMeals(result);
-    console.log(meals);
   }
 
   function handleLoadMore() {

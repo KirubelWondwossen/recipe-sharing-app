@@ -6,7 +6,7 @@ import {
 import Logo from "./Logo";
 import { Link, useLocation } from "react-router-dom";
 
-function Navbar({ hidden }) {
+function Navbar({ hidden, handleSearch }) {
   // eslint-disable-next-line
   const location = useLocation();
   return (
@@ -16,11 +16,14 @@ function Navbar({ hidden }) {
           <Bars3Icon className={`h-5 w-5 hidden md:block ${hidden}`} />
           <Logo style={"px-0"} />
         </div>
-        <Search style={"absolute invisible md:visible md:static"} />
+        <Search
+          handleSearch={handleSearch}
+          style={"absolute invisible md:visible md:static"}
+        />
         <Bars3Icon className="h-5 w-5 md:hidden" />
         <NavBtns />
       </nav>
-      <Search style={"mt-4 md:hidden"} />
+      <Search handleSearch={handleSearch} style={"mt-4 md:hidden"} />
     </div>
   );
 }
@@ -60,7 +63,7 @@ function NavBtns() {
   );
 }
 
-function Search({ style }) {
+function Search({ style, handleSearch }) {
   return (
     <div className={`w-fit bg-[#F3F3F3] flex items-center gap-2 ${style}`}>
       <span className="flex sm:gap-1 items-center cursor-pointer">
@@ -74,6 +77,7 @@ function Search({ style }) {
         className="py-1 sm:p-2 outline-none focus:outline-none text-body text-xs lg:text-sm bg-[#F3F3F3]"
         type="search"
         placeholder="Search for recipes..."
+        onChange={(e) => handleSearch(e.target.value)}
       />
       <span className="lg:p-3 p-1 sm:p-2 bg-[#509E2F] cursor-pointer">
         <MagnifyingGlassIcon className="w-4 text-white" />

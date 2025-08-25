@@ -1,7 +1,24 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
+import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
-function MealCard({ meal }) {
+function MealCard({ meal, mealId }) {
+  function handleAddtoFavorite() {
+    let storedItems = JSON.parse(localStorage.getItem("meals"));
+    if (!Array.isArray(storedItems)) {
+      storedItems = [];
+    }
+    const newMeal = {
+      idMeal: meal.idMeal,
+      strMealThumb: meal.strMealThumb,
+      strMeal: meal.strMeal,
+    };
+    if (!storedItems.some((item) => item.id === newMeal.id)) {
+      storedItems.push(newMeal);
+      localStorage.setItem("meals", JSON.stringify(storedItems));
+    }
+  }
+
   return (
     <div className="flex flex-col rounded-xl shadow-lg gap-7 bg-white overflow-hidden">
       <div className="overflow-hidden">
@@ -23,7 +40,10 @@ function MealCard({ meal }) {
             View recipe
           </Link>
 
-          <HeartIcon className="w-5" />
+          <HeartIcon
+            onClick={() => handleAddtoFavorite(mealId)}
+            className="w-5 cursor-pointer"
+          />
         </div>
       </div>
     </div>

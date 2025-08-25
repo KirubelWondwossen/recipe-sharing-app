@@ -54,7 +54,9 @@ function MealCards({ visibleMeals }) {
   return (
     <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-8">
       {visibleMeals.length > 0 ? (
-        visibleMeals.map((meal) => <MealCard meal={meal} key={meal.idMeal} />)
+        visibleMeals.map((meal) => (
+          <MealCard meal={meal} key={meal.idMeal} mealId={meal.idMeal} />
+        ))
       ) : (
         <SectionHeader style={""}>No Result</SectionHeader>
       )}

@@ -8,25 +8,8 @@ import {
 } from "@heroicons/react/24/outline";
 import CardTitle from "../components/CardTitle";
 import Button from "../components/Button";
-
-const ingredients = [
-  "2 cups (diced) Potatoes",
-  "1 cup (diced) Carrots",
-  "1 cup Peas",
-  "1/2 cup Mayonnaise",
-  "1/2 cup (diced) Pickles",
-  "2 Boiled eggs (chopped)",
-  "Salt to taste",
-  "Black pepper to taste",
-  "2 cups (diced) Potatoes",
-  "1 cup (diced) Carrots",
-  "1 cup Peas",
-  "1/2 cup Mayonnaise",
-  "1/2 cup (diced) Pickles",
-  "2 Boiled eggs (chopped)",
-  "Salt to taste",
-  "Black pepper to taste",
-];
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const instructions = [
   "Boil the potatoes and carrots until tender. Drain and cool.",
@@ -52,12 +35,40 @@ const data = [
 ];
 
 function RecipeDetailPage() {
+  const { id } = useParams();
+  const [meal, setMeal] = useState(null);
+  const [ingredient, setIngredient] = useState([]);
+
+  useEffect(() => {
+    async function fetchMeal() {
+      const res = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+      );
+      const data = await res.json();
+      const mealData = data.meals[0];
+
+      setMeal(mealData);
+
+      const ingList = [];
+      for (let i = 1; i <= 20; i++) {
+        const ing =
+          mealData[`strMeasure${i}`] + " " + mealData[`strIngredient${i}`];
+        if (ing) ingList.push(ing);
+      }
+
+      setIngredient(ingList);
+    }
+
+    fetchMeal();
+  }, [id]);
+
   return (
     <div className="container mx-auto">
       <Navbar hidden={"md:hidden"} />
       <Trending
         visible={"hidden"}
         height={"h-[8rem] sm:h-[10rem] md:h-[15rem]"}
+        meal={meal}
       />
       <div className="flex gap-5 sm:gap-11">
         {data.map((el, i) => (
@@ -65,7 +76,7 @@ function RecipeDetailPage() {
         ))}
         <HeartIcon className="w-5 sm:w-7 md:w-8" />
       </div>
-      <Ingredients ingredients={ingredients} />
+      <Ingredients ingredients={ingredient} />
       <Instructions instructions={instructions} />
       <Footer />
     </div>

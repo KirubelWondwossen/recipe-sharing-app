@@ -15,8 +15,8 @@ function Home() {
 
   useEffect(() => {
     async function fetchRandomMeal() {
-      const data = await random(); // returns an array
-      if (data.length > 0) setTrendingImg(data[0]); // get first meal
+      const data = await random();
+      if (data.length > 0) setTrendingImg(data[0]);
     }
     fetchRandomMeal();
   }, []);

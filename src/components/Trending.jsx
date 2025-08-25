@@ -3,7 +3,7 @@ import SectionHeader from "./SectionHeader";
 function Trending({ visible, height, meal }) {
   return (
     <div
-      style={{ backgroundImage: `url(${meal.strMealThumb})` }}
+      style={{ backgroundImage: `url(${meal && meal.strMealThumb})` }}
       className={`flex flex-col p-4 mt-5 items-start justify-end rounded-3xl ${height}  relative bg-cover bg-no-repeat bg-center`}
     >
       <h3
@@ -11,7 +11,7 @@ function Trending({ visible, height, meal }) {
       >
         Trending Now
       </h3>
-      <SectionHeader style={"text-white"}>{meal.strMeal}</SectionHeader>
+      <SectionHeader style={"text-white"}>{meal && meal.strMeal}</SectionHeader>
     </div>
   );
 }

@@ -17,7 +17,7 @@ function MealCard({ meal }) {
         </h3>
         <div className="flex justify-between w-full items-center">
           <Link
-            to="/recipedetailpage"
+            to={`/recipedetailpage/${meal.idMeal}`}
             className="text-body text-base text-accent underline"
           >
             View recipe

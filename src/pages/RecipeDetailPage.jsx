@@ -7,19 +7,18 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/24/outline";
 import CardTitle from "../components/CardTitle";
-import Button from "../components/Button";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const data = [
+const cataArea = [
   {
     type: "Cusine",
-    desc: "Russian",
+    desc: "",
     Icon: GlobeAltIcon,
   },
   {
     type: "Category",
-    desc: "Lunch",
+    desc: "",
     Icon: Squares2X2Icon,
   },
 ];
@@ -29,6 +28,8 @@ function RecipeDetailPage() {
   const [meal, setMeal] = useState(null);
   const [ingredient, setIngredient] = useState([]);
   const [instructions, setInstructions] = useState([]);
+  const [youtubeLink, setYoutubeLink] = useState("");
+
   useEffect(() => {
     async function fetchMeal() {
       const res = await fetch(
@@ -38,6 +39,7 @@ function RecipeDetailPage() {
       const mealData = data.meals[0];
 
       setMeal(mealData);
+      setYoutubeLink(mealData.strYoutube);
 
       const ingList = [];
       for (let i = 1; i <= 20; i++) {
@@ -48,6 +50,9 @@ function RecipeDetailPage() {
       }
       setIngredient(ingList);
       setInstructions(mealData.strInstructions.split("\r\n"));
+
+      cataArea[0].desc = mealData.strArea;
+      cataArea[1].desc = mealData.strCategory;
     }
 
     fetchMeal();
@@ -62,13 +67,17 @@ function RecipeDetailPage() {
         meal={meal}
       />
       <div className="flex gap-5 sm:gap-11">
-        {data.map((el, i) => (
+        {cataArea.map((el, i) => (
           <Tags data={el} key={i} />
         ))}
         <HeartIcon className="w-5 sm:w-7 md:w-8" />
       </div>
       <Ingredients ingredients={ingredient} />
-      <Instructions instructions={instructions} />
+      <Instructions
+        meal={youtubeLink}
+        instructions={instructions}
+        youtubeLink={youtubeLink}
+      />
       <Footer />
     </div>
   );
@@ -108,7 +117,7 @@ function Ingredients({ ingredients }) {
   );
 }
 
-function Instructions({ instructions }) {
+function Instructions({ instructions, youtubeLink }) {
   return (
     <div className="flex flex-col items-start my-8 p-4">
       <CardTitle>
@@ -118,9 +127,13 @@ function Instructions({ instructions }) {
         {instructions.map((el, i) => (
           <Steps step={el} i={i} key={i} />
         ))}
-        <Button style={"bg-[#FF4D4D] w-fit font-semibold"}>
+        <a
+          href={youtubeLink}
+          target="_blank"
+          className={`text-sm sm:text:base px-7 py-3.5 rounded-2xl bg-accent text-white font-body inline-block w-fit`}
+        >
           Watch Youtube Video
-        </Button>
+        </a>
       </div>
     </div>
   );

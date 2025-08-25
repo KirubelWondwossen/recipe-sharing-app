@@ -3,7 +3,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
-function MealCard({ meal }) {
+function MealCard({ meal, mealId, onRemove }) {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ function MealCard({ meal }) {
             />
           ) : (
             <HeartIconSolid
-              onClick={handleAddtoFavorite}
+              onClick={() => onRemove(mealId)}
               className="w-5 cursor-pointer"
             />
           )}

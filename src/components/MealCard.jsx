@@ -19,6 +19,9 @@ function MealCard({ meal, mealId }) {
     }
   }
 
+  const meals = JSON.parse(localStorage.getItem("meals")) || [];
+  const exists = meals.some((meal) => meal.idMeal === mealId);
+
   return (
     <div className="flex flex-col rounded-xl shadow-lg gap-7 bg-white overflow-hidden">
       <div className="overflow-hidden">
@@ -39,11 +42,17 @@ function MealCard({ meal, mealId }) {
           >
             View recipe
           </Link>
-
-          <HeartIcon
-            onClick={() => handleAddtoFavorite(mealId)}
-            className="w-5 cursor-pointer"
-          />
+          {!exists ? (
+            <HeartIcon
+              onClick={() => handleAddtoFavorite(mealId)}
+              className="w-5 cursor-pointer"
+            />
+          ) : (
+            <HeartIconSolid
+              onClick={() => handleAddtoFavorite(mealId)}
+              className="w-5 cursor-pointer"
+            />
+          )}
         </div>
       </div>
     </div>

@@ -11,16 +11,6 @@ import Button from "../components/Button";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const instructions = [
-  "Boil the potatoes and carrots until tender. Drain and cool.",
-  "Dice the boiled potatoes and carrots into small pieces.",
-  "Mix the potatoes, carrots, peas, pickles, and boiled eggs in a large bowl.",
-  "Add mayonnaise and season with salt and black pepper to taste.",
-  "Stir everything gently until well combined.",
-  "Refrigerate for at least 1 hour before serving.",
-  "Enjoy your Russian Salad!",
-];
-
 const data = [
   {
     type: "Cusine",
@@ -38,7 +28,7 @@ function RecipeDetailPage() {
   const { id } = useParams();
   const [meal, setMeal] = useState(null);
   const [ingredient, setIngredient] = useState([]);
-
+  const [instructions, setInstructions] = useState([]);
   useEffect(() => {
     async function fetchMeal() {
       const res = await fetch(
@@ -52,11 +42,12 @@ function RecipeDetailPage() {
       const ingList = [];
       for (let i = 1; i <= 20; i++) {
         const ing =
+          mealData[`strIngredient${i}`] &&
           mealData[`strMeasure${i}`] + " " + mealData[`strIngredient${i}`];
         if (ing) ingList.push(ing);
       }
-
       setIngredient(ingList);
+      setInstructions(mealData.strInstructions.split("\r\n"));
     }
 
     fetchMeal();
@@ -117,7 +108,7 @@ function Ingredients({ ingredients }) {
   );
 }
 
-function Instructions() {
+function Instructions({ instructions }) {
   return (
     <div className="flex flex-col items-start my-8 p-4">
       <CardTitle>

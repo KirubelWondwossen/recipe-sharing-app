@@ -1,33 +1,39 @@
+import { useState, useEffect } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
-function MealCard({ meal, mealId }) {
+function MealCard({ meal }) {
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("meals")) || [];
+    setFavorites(stored);
+  }, []);
+
+  const exists = favorites.some((fav) => fav.idMeal === meal.idMeal);
+
   function handleAddtoFavorite() {
-    let storedItems = JSON.parse(localStorage.getItem("meals"));
-    if (!Array.isArray(storedItems)) {
-      storedItems = [];
-    }
-    const newMeal = {
-      idMeal: meal.idMeal,
-      strMealThumb: meal.strMealThumb,
-      strMeal: meal.strMeal,
-    };
-    if (!storedItems.some((item) => item.id === newMeal.id)) {
-      storedItems.push(newMeal);
-      localStorage.setItem("meals", JSON.stringify(storedItems));
+    let updated = [...favorites];
+
+    if (!exists) {
+      updated.push({
+        idMeal: meal.idMeal,
+        strMealThumb: meal.strMealThumb,
+        strMeal: meal.strMeal,
+      });
+
+      localStorage.setItem("meals", JSON.stringify(updated));
+      setFavorites(updated);
     }
   }
-
-  const meals = JSON.parse(localStorage.getItem("meals")) || [];
-  const exists = meals.some((meal) => meal.idMeal === mealId);
 
   return (
     <div className="flex flex-col rounded-xl shadow-lg gap-7 bg-white overflow-hidden">
       <div className="overflow-hidden">
         <img
           className="rounded-t-xl transition-transform hover:scale-110 duration-300 w-full"
-          src={`${meal.strMealThumb}`}
+          src={meal.strMealThumb}
           alt={meal.strMeal}
         />
       </div>
@@ -44,12 +50,12 @@ function MealCard({ meal, mealId }) {
           </Link>
           {!exists ? (
             <HeartIcon
-              onClick={() => handleAddtoFavorite(mealId)}
+              onClick={handleAddtoFavorite}
               className="w-5 cursor-pointer"
             />
           ) : (
             <HeartIconSolid
-              onClick={() => handleAddtoFavorite(mealId)}
+              onClick={handleAddtoFavorite}
               className="w-5 cursor-pointer"
             />
           )}
@@ -58,4 +64,5 @@ function MealCard({ meal, mealId }) {
     </div>
   );
 }
+
 export default MealCard;

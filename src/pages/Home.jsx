@@ -9,6 +9,7 @@ import SectionHeader from "../components/SectionHeader";
 import Filter from "../components/Filter";
 
 function Home() {
+  const [isOpenFilter, setIsOpenFilter] = useState(true);
   const [meals, setMeals] = useState([]);
   const [filteredMeals, setFilteredMeals] = useState([]);
   const [displayCount, setDisplayCount] = useState(8);
@@ -43,9 +44,17 @@ function Home() {
     setFilteredMeals(newMeals);
   }
 
+  function handleOpen() {
+    setIsOpenFilter((isOpen) => !isOpen);
+  }
+
   return (
     <div className="container mx-auto relative">
-      <Navbar handleSearch={handleSearch} />
+      <Navbar
+        handleSearch={handleSearch}
+        handleOpen={handleOpen}
+        isOpenFilter={isOpenFilter}
+      />
 
       {trendingImg.length === 0 ? (
         <h3 className="sm:text-xl md:text-2xl font-heading font-semibold my-6">
@@ -54,8 +63,8 @@ function Home() {
       ) : (
         <Trending height={"h-[15rem]"} meal={trendingImg} />
       )}
-      <div className="grid grid-cols-[1fr_4fr] gap-4">
-        <Filter handleFilter={handleFilter} />
+      <div className={`${isOpenFilter && "grid md:grid-cols-[1fr_4fr] gap-4"}`}>
+        {isOpenFilter && <Filter handleFilter={handleFilter} />}
         <div>
           <MealCards visibleMeals={visibleMeals} />
           <div className="flex flex-col items-center">

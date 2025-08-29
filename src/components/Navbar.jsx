@@ -5,8 +5,9 @@ import {
 } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
-function Navbar({ hidden, handleSearch }) {
+function Navbar({ hidden, handleSearch, isOpenFilter, handleOpen }) {
   // eslint-disable-next-line
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,7 +20,17 @@ function Navbar({ hidden, handleSearch }) {
     <div className="flex flex-col items-center">
       <nav className="container mx-auto flex justify-between items-center relative">
         <div className="flex justify-start md:items-center">
-          <Bars3Icon className={`h-5 w-5 hidden md:block ${hidden}`} />
+          {!isOpenFilter ? (
+            <Bars3Icon
+              className={`h-5 w-5 hidden md:block ${hidden} cursor-pointer`}
+              onClick={handleOpen}
+            />
+          ) : (
+            <XMarkIcon
+              onClick={handleOpen}
+              className="h-5 w-5 hidden md:block cursor-pointer"
+            />
+          )}
           <Logo style={"px-0"} />
         </div>
         <Search

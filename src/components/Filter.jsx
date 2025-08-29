@@ -24,6 +24,7 @@ function Filter({ handleFilter }) {
       const data = await res.json();
       setCategorie(data.meals);
     }
+
     fetchCategorie();
   });
 
@@ -55,8 +56,8 @@ function Filters({
   handleFilter,
 }) {
   return (
-    <div className="fex flex-col gap-4">
-      <h4 className="sm:text-xs md:text-base font-heading font-medium">
+    <div className="fex flex-col gap-4 items-start w-fit">
+      <h4 className="sm:text-xs md:text-base font-heading font-medium text-left">
         Category
       </h4>
       {visibleCategories.map((el, i) => (

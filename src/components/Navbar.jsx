@@ -4,11 +4,17 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar({ hidden, handleSearch }) {
   // eslint-disable-next-line
   const location = useLocation();
+  const navigate = useNavigate();
+
+  function handleFocus() {
+    if (location.pathname === "/home") return;
+    return navigate("/home");
+  }
   return (
     <div className="flex flex-col items-center">
       <nav className="container mx-auto flex justify-between items-center relative">
@@ -17,6 +23,7 @@ function Navbar({ hidden, handleSearch }) {
           <Logo style={"px-0"} />
         </div>
         <Search
+          handleFocus={handleFocus}
           handleSearch={handleSearch}
           style={"absolute invisible md:visible md:static"}
         />
@@ -63,7 +70,7 @@ function NavBtns() {
   );
 }
 
-function Search({ style, handleSearch }) {
+function Search({ style, handleSearch, handleFocus }) {
   return (
     <div className={`w-fit bg-[#F3F3F3] flex items-center gap-2 ${style}`}>
       <span className="flex sm:gap-1 items-center cursor-pointer">
@@ -78,6 +85,7 @@ function Search({ style, handleSearch }) {
         type="search"
         placeholder="Search for recipes..."
         onChange={(e) => handleSearch(e.target.value)}
+        onFocus={handleFocus}
       />
       <span className="lg:p-3 p-1 sm:p-2 bg-[#509E2F] cursor-pointer">
         <MagnifyingGlassIcon className="w-4 text-white" />

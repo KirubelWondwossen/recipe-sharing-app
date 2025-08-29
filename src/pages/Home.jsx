@@ -6,11 +6,16 @@ import Button from "../components/Button";
 import { random, search } from "../services/mealdbService";
 import { useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader";
+import Filter from "../components/Filter";
 
 function Home() {
   const [meals, setMeals] = useState([]);
+  const [filteredMeals, setFilteredMeals] = useState([]);
   const [displayCount, setDisplayCount] = useState(8);
-  const visibleMeals = meals.slice(0, displayCount);
+  const visibleMeals =
+    filteredMeals.length > 0
+      ? filteredMeals.slice(0, displayCount)
+      : meals.slice(0, displayCount);
   const [trendingImg, setTrendingImg] = useState([]);
 
   useEffect(() => {
@@ -18,6 +23,7 @@ function Home() {
       const data = await random();
       if (data.length > 0) setTrendingImg(data[0]);
     }
+
     fetchRandomMeal();
   }, []);
 
@@ -31,19 +37,35 @@ function Home() {
     setDisplayCount((prev) => prev + 8);
   }
 
+  function handleFilter(category, isChecked) {
+    if (!isChecked) setFilteredMeals([]);
+    const newMeals = meals.filter((el) => el.strCategory === category);
+    setFilteredMeals(newMeals);
+  }
+
   return (
     <div className="container mx-auto relative">
       <Navbar handleSearch={handleSearch} />
 
-      {trendingImg && <Trending height={"h-[15rem]"} meal={trendingImg} />}
-
-      <MealCards visibleMeals={visibleMeals} />
-      <div className="flex flex-col items-center">
-        {displayCount < meals.length && (
-          <Button onClick={handleLoadMore} style={"mt-8"}>
-            Load More
-          </Button>
-        )}
+      {trendingImg.length === 0 ? (
+        <h3 className="sm:text-xl md:text-2xl font-heading font-semibold my-6">
+          No Internet
+        </h3>
+      ) : (
+        <Trending height={"h-[15rem]"} meal={trendingImg} />
+      )}
+      <div className="grid grid-cols-[1fr_4fr] gap-4">
+        <Filter handleFilter={handleFilter} />
+        <div>
+          <MealCards visibleMeals={visibleMeals} />
+          <div className="flex flex-col items-center">
+            {displayCount < meals.length && (
+              <Button onClick={handleLoadMore} style={"mt-8"}>
+                Load More
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
       <Footer />
     </div>

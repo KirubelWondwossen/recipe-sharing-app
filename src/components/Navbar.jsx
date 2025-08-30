@@ -6,11 +6,16 @@ import {
 import Logo from "./Logo";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
 
-function Navbar({ hidden, handleSearch, isOpenFilter, handleOpen }) {
+function Navbar({ hidden, handleSearch, isOpenFilter, handleOpen, filter }) {
   // eslint-disable-next-line
   const location = useLocation();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  function handleOpenNav() {
+    setIsOpen((isOpen) => !isOpen);
+  }
 
   function handleFocus() {
     if (location.pathname === "/home") return;
@@ -37,18 +42,37 @@ function Navbar({ hidden, handleSearch, isOpenFilter, handleOpen }) {
           handleFocus={handleFocus}
           handleSearch={handleSearch}
           style={"absolute invisible md:visible md:static"}
+          filter={filter}
         />
-        <Bars3Icon className="h-5 w-5 md:hidden" />
-        <NavBtns />
+        {!isOpen ? (
+          <Bars3Icon
+            className={`h-5 w-5 md:hidden cursor-pointer`}
+            onClick={handleOpenNav}
+          />
+        ) : (
+          <XMarkIcon
+            onClick={handleOpenNav}
+            className="h-5 w-5 md:hidden cursor-pointer"
+          />
+        )}
+        <NavBtns isOpen={isOpen} />
       </nav>
-      <Search handleSearch={handleSearch} style={"mt-4 md:hidden"} />
+      <Search
+        handleSearch={handleSearch}
+        style={"mt-4 md:hidden"}
+        filter={filter}
+      />
     </div>
   );
 }
 
-function NavBtns() {
+function NavBtns({ isOpen }) {
   return (
-    <ul className="flex justify-between flex-col items-start md:flex-row  right-4 sm:right-[5%] top-0 gap-2 absolute md:static md:visible invisible">
+    <ul
+      className={`flex justify-between flex-col items-start md:flex-row  right-4 sm:right-[5%] top-0 gap-2 absolute md:static md:visible ${
+        isOpen && "invisible"
+      }`}
+    >
       <li className="list-none">
         <Link
           to="/home"
@@ -81,14 +105,13 @@ function NavBtns() {
   );
 }
 
-function Search({ style, handleSearch, handleFocus }) {
+function Search({ style, handleSearch, handleFocus, filter }) {
   return (
     <div className={`w-fit bg-[#F3F3F3] flex items-center gap-2 ${style}`}>
       <span className="flex sm:gap-1 items-center cursor-pointer">
         <span className="text-[10px] sm:text-xs lg:text-sm font-body px-1 sm:px-2">
-          All Categories
+          {filter ? filter : "All Categories"}
         </span>
-        <ChevronDownIcon className="w-2 sm:w-3 lg:w-4" />
       </span>
       <span className="text-[#ADADAD] pb-1 text-xs sm:text-base">|</span>
       <input

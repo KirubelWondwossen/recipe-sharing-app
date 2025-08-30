@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader";
 import Filter from "../components/Filter";
 
-function Home() {
+function Home({ filter, handleSearchFilter }) {
   const [isOpenFilter, setIsOpenFilter] = useState(true);
   const [meals, setMeals] = useState([]);
   const [filteredMeals, setFilteredMeals] = useState([]);
@@ -42,6 +42,7 @@ function Home() {
     if (!isChecked) setFilteredMeals([]);
     const newMeals = meals.filter((el) => el.strCategory === category);
     setFilteredMeals(newMeals);
+    handleSearchFilter(category);
   }
 
   function handleOpen() {
@@ -54,6 +55,7 @@ function Home() {
         handleSearch={handleSearch}
         handleOpen={handleOpen}
         isOpenFilter={isOpenFilter}
+        filter={filter}
       />
 
       {trendingImg.length === 0 ? (

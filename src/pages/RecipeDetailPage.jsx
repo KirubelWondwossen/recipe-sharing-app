@@ -23,7 +23,7 @@ const cataArea = [
   },
 ];
 
-function RecipeDetailPage() {
+function RecipeDetailPage({ filter }) {
   const { id } = useParams();
   const [meal, setMeal] = useState(null);
   const [ingredient, setIngredient] = useState([]);
@@ -60,7 +60,7 @@ function RecipeDetailPage() {
 
   return (
     <div className="container mx-auto">
-      <Navbar hidden={"md:hidden"} />
+      <Navbar hidden={"md:hidden"} filter={filter} />
       <Trending
         visible={"hidden"}
         height={"h-[8rem] sm:h-[10rem] md:h-[15rem]"}
